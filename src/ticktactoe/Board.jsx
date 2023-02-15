@@ -4,12 +4,19 @@ import Square from './Square';
 const Board =()=>{
 
     const[state, setState] = useState(Array(9).fill(null))
-   
-    console.Console("State", state );
+    const[isXTurn, setIsXTurn ] = useState(true);
+   // const[isYTurn, setIsYTurn ] = useState(true);
+    
 
     const handleClick = (index)=>{
         
-        
+        // console.log("Clicked on Index" , index )
+
+        const copyState =[...state]
+        copyState[index] = isXTurn ? "X" : "O" ;
+        setState(copyState);
+        setIsXTurn(!isXTurn)
+
         
     }
 
@@ -18,19 +25,19 @@ const Board =()=>{
 
         <div className="board-cont">
             <div className="board-row">
-            <Square value={state[0]}/>
-            <Square value={state[1]}/>
-            <Square value={state[2]}/>
+            <Square onClick={()=>handleClick(0)} value={state[0]}/>
+            <Square onClick={()=>handleClick(1)} value={state[1]}/>
+            <Square onClick={()=>handleClick(2)} value={state[2]}/>
             </div>
             <div className="board-row">
-            <Square value={state[3]}/>
-            <Square value={state[4]}/>
-            <Square value={state[5]}/>
+            <Square onClick={()=>handleClick(3)} value={state[3]}/>
+            <Square onClick={()=>handleClick(4)} value={state[4]}/>
+            <Square onClick={()=>handleClick(5)} value={state[5]}/>
             </div>
             <div className="board-row">
-            <Square value={state[6]}/>
-            <Square value={state[7]}/>
-            <Square value={state[8]}/>
+            <Square onClick={()=>handleClick(6)} value={state[6]}/>
+            <Square onClick={()=>handleClick(7)} value={state[7]}/>
+            <Square onClick={()=>handleClick(8)} value={state[8]}/>
             </div>
         </div>
     )
